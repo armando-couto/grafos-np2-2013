@@ -1,13 +1,10 @@
-package br.unifor.grafo.main;
+package br.unifor.grafo.tad;
 
 import java.io.File;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
 
-import br.unifor.grafo.tad.Grafo;
-import br.unifor.grafo.tad.GrafoLista;
-import br.unifor.grafo.tad.GrafoMatriz;
 import br.unifor.grafo.util.Leitor;
 
 /**
