@@ -71,7 +71,6 @@ public class Aresta implements Comparable<Aresta> {
 	                return false;
 	        }
 	       
-	        @Override
 	        public int compareTo(Aresta aresta) {
 	                if (this.peso < aresta.getPeso())
 	                        return -1;
