@@ -15,7 +15,6 @@ public class Grafo {
 	int[][] matAdjacencia;
 	boolean direcao;
 	int arestas;
-//	Teoremas teorema = new Teoremas();
 
 	static Scanner s = new Scanner(System.in);
 
@@ -25,9 +24,7 @@ public class Grafo {
 		this.vertices = vertices;
 		this.arestas = arestas;
 		this.direcao = direcao;
-//		matIncidencia = new int[vertices][arestas];
 		matAdjacencia = new int[vertices][vertices];
-//		CriarArestasIncidencia();
 		CriarGrafo();
 		
 	}
@@ -150,7 +147,8 @@ public class Grafo {
 
 			}
 			System.out.println();
-			System.out.println("Matriz Inicial");
+			System.out.println("Matriz Inicial: ");
+			System.out.println();
 			imprimir();
 			System.out.println();
 		}
