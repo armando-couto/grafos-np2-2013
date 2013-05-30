@@ -10,13 +10,17 @@ public class Kruskal
         TreeSet<Aresta> arestas = new TreeSet<Aresta>();
 
         //Sample problem - replace these values with your problem set
-        arestas.add(new Aresta("0", "1", 2)); 
-        arestas.add(new Aresta("0", "3", 1)); 
-        arestas.add(new Aresta("1", "2", 3)); 
-        arestas.add(new Aresta("2", "3", 5)); 
-        arestas.add(new Aresta("2", "4", 7)); 
-        arestas.add(new Aresta("3", "4", 6)); 
-        arestas.add(new Aresta("4", "5", 4));
+        arestas.add(new Aresta("A", "B", 7)); 
+        arestas.add(new Aresta("A", "D", 5)); 
+        arestas.add(new Aresta("B", "D", 9)); 
+        arestas.add(new Aresta("B", "C", 8)); 
+        arestas.add(new Aresta("C", "E", 5)); 
+        arestas.add(new Aresta("B", "E", 7)); 
+        arestas.add(new Aresta("D", "E", 15));
+        arestas.add(new Aresta("D", "F", 6));
+        arestas.add(new Aresta("F", "E", 8));
+        arestas.add(new Aresta("E", "G", 9));
+        arestas.add(new Aresta("F", "G", 11));
 
         System.out.println("Grafo");
         KruskalArestas vv = new KruskalArestas();
