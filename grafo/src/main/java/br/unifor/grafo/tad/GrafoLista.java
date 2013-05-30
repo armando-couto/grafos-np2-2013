@@ -34,8 +34,13 @@ public class GrafoLista extends Grafo implements GrafoTad {
 
 	@Override
 	public void imprimir() {
-		// TODO Auto-generated method stub
-		System.out.println("teste");
+		String retorno = "";
+		for (int i = 0; i < this.getVertice(); i++) {
+			retorno += "1 -> ";
+			retorno += this.lista[i] + " ";
+			retorno += "\n";
+		}
+		System.out.println(retorno);
 	}
 
 	/**

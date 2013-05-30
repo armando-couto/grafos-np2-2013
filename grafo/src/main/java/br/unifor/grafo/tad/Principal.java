@@ -1,6 +1,7 @@
 package br.unifor.grafo.tad;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -108,7 +109,7 @@ public class Principal {
 			
 			System.out.println("Quantos Vértices:");
 			grafo.setVertice(this.s.nextInt());
-			this.criarArestas();
+			this.criarArestasMatriz();
 			
 			this.menuGrafo();
 		} catch (Exception e) {
@@ -142,7 +143,7 @@ public class Principal {
 	/**
 	 * Montagem do grafo.
 	 */
-	private void criarArestas() {
+	private void criarArestasMatriz() {
 		grafoMatriz = new GrafoMatriz();
 		grafoMatriz.setAresta(grafo.getAresta());
 		grafoMatriz.setDirigido(grafo.getDirigido());
@@ -150,28 +151,119 @@ public class Principal {
 		grafoMatriz.setRepresentacao(grafo.getRepresentacao());
 		grafoMatriz.setVertice(grafo.getVertice());
 		grafoMatriz.setMatriz(new int[grafo.getVertice()][grafo.getVertice()]);
-		if (grafo.getPonderado()) {
-			for (int i = 0; i < grafo.getVertice(); i++) {
-				for (int j = 0; j < grafo.getVertice(); j++) {
-					System.out.println("Digite "+i+" de "+j+" o peso:");
-					grafoMatriz.getMatriz()[i][j] = this.s.nextInt();
-				}
-			}
-		} else {
-			for (int i = 0; i < grafo.getVertice(); i++) {
-				for (int j = 0; j < grafo.getVertice(); j++) {
-					System.out.println("Digite "+i+" de "+j+":");
-					grafoMatriz.getMatriz()[i][j] = this.s.nextInt();
-				}
-			}
+		grafoMatriz.setAresta(new ArrayList<Aresta>());
+		if (!grafo.getPonderado() && !grafo.getDirigido()) {
+			System.out.println("Quantas arestas tera o grafo?");
+			int qtd_arestas = s.nextInt();
+			for (int k = 0 ; k< qtd_arestas; k++) {
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice origem (de 0 a "+(grafo.getVertice()-1)+")");
+					int origem = s.nextInt();
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice destino (de 0 a "+(grafo.getVertice()-1)+")");
+					int destino = s.nextInt();
+					grafoMatriz.getMatriz()[origem][destino] = 1;
+					grafoMatriz.getMatriz()[destino][origem] = 1;
+					grafoMatriz.getAresta().add(new Aresta(origem, destino, 0));
+					grafoMatriz.getAresta().add(new Aresta(destino, origem, 0));
 		}
+		}
+		
+		if (grafo.getPonderado() && !grafo.getDirigido()) {
+			System.out.println("Quantas arestas tera o grafo?");
+			int qtd_arestas = s.nextInt();
+			for (int k = 0 ; k< qtd_arestas; k++) {
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice origem (de 0 a "+(grafo.getVertice()-1)+")");
+					int origem = s.nextInt();
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice destino (de 0 a "+(grafo.getVertice()-1)+")");
+					int destino = s.nextInt();
+					System.out.println("Aresta - "+(k+1)+": Digite o peso:");
+					int peso = s.nextInt();
+					grafoMatriz.getMatriz()[origem][destino] = peso;
+					grafoMatriz.getMatriz()[destino][origem] = peso;
+					grafoMatriz.getAresta().add(new Aresta(origem, destino, peso));
+					grafoMatriz.getAresta().add(new Aresta(destino, origem, peso));
+		}
+	}
+		
+		if (!grafo.getPonderado() && grafo.getDirigido()) {
+			System.out.println("Quantas arestas tera o grafo?");
+			int qtd_arestas = s.nextInt();
+			for (int k = 0 ; k< qtd_arestas; k++) {
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice origem (de 0 a "+(grafo.getVertice()-1)+")");
+					int origem = s.nextInt();
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice destino (de 0 a "+(grafo.getVertice()-1)+")");
+					int destino = s.nextInt();
+					grafoMatriz.getMatriz()[origem][destino] = 1;
+					grafoMatriz.getAresta().add(new Aresta(origem, destino, 0));
+		}
+	}
+		
+		if (grafo.getPonderado() && grafo.getDirigido()) {
+			System.out.println("Quantas arestas tera o grafo?");
+			int qtd_arestas = s.nextInt();
+			for (int k = 0 ; k< qtd_arestas; k++) {
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice origem (de 0 a "+(grafo.getVertice()-1)+")");
+					int origem = s.nextInt();
+					System.out.println("Aresta - "+(k+1)+": Digite o vértice destino (de 0 a "+(grafo.getVertice()-1)+")");
+					int destino = s.nextInt();
+					System.out.println("Aresta - "+(k+1)+": Digite o peso:");
+					int peso = s.nextInt();
+					grafoMatriz.getMatriz()[origem][destino] = peso;
+					grafoMatriz.getAresta().add(new Aresta(origem, destino, peso));
+		}
+	}
+		
+//		if (grafo.getPonderado()) {
+//			for (int i = 0; i < grafo.getVertice(); i++) {
+//				for (int j = 0; j < grafo.getVertice(); j++) {
+////					System.out.println("Digite "+i+" de "+j+" o peso:");
+////					grafoMatriz.getMatriz()[i][j] = this.s.nextInt();
+//				}
+//			}
+//		} else {
+//			for (int i = 0; i < grafo.getVertice(); i++) {
+//				for (int j = 0; j < grafo.getVertice(); j++) {
+//					System.out.println("Digite "+i+" de "+j+":");
+//					grafoMatriz.getMatriz()[i][j] = this.s.nextInt();
+//				}
+//			}
+//		}
 	}
 
 	private void listaAdjacencia() {
-		
+		try {
+			// Saber se é dirigido.
+			System.out.println("Grafo é dirigido:");
+			int isDirigido = this.s.nextInt();
+			if (isDirigido == 0)
+				grafo.setDirigido(false);
+			else if (isDirigido == 1)
+				grafo.setDirigido(true);
+			else
+				this.opcaoInvalida();
+			
+			// Saber se é ponderado.
+			System.out.println("Grafo é ponderado:");
+			int isPonderado = this.s.nextInt();
+			if (isPonderado == 0)
+				grafo.setPonderado(false);
+			else if (isPonderado == 1)
+				grafo.setPonderado(true);
+			else
+				this.opcaoInvalida();
+			
+			System.out.println("Quantos Vértices:");
+			grafo.setVertice(this.s.nextInt());
+			this.criarListaAdjacencia();
+			
+			this.menuGrafo();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
-	
+	public void criarListaAdjacencia() {
+		
+	}
 	
 	private void opcaoInvalida() {
 		System.out.println("Opção inválido");
